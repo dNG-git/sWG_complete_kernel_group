@@ -212,7 +212,7 @@ Set up the cache
 
 		if (isset ($f_attributes))
 		{
-			if (count ($this->data) > 1) { $f_return =& $this->data; }
+			if (count ($this->data) > 1) { $f_return = $this->data; }
 			elseif ((($f_values == NULL)&&(!empty ($this->data_extra_conditions)))||(isset ($f_attributes)))
 			{
 				$direct_classes['db']->init_select ($direct_settings['group_table']);
@@ -237,7 +237,7 @@ Set up the cache
 				$direct_classes['db']->define_limit (1);
 				$this->data = $direct_classes['db']->query_exec ("sa");
 
-				if ($this->data) { $f_return =& $this->data; }
+				if ($this->data) { $f_return = $this->data; }
 			}
 		}
 
