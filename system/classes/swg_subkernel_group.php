@@ -168,8 +168,8 @@ Set up the group initialisation code
 			if (($direct_classes['basic_functions']->include_file ($direct_settings['path_system']."/classes/swg_db.php"))&&(direct_class_init ("db"))&&($direct_classes['db']->v_connect ())) { $f_return = true; }
 		}
 
-		if ((!class_exists ("direct_group"))&&(!$direct_classes['basic_functions']->include_file ($direct_settings['path_system']."/classes/dhandler/swg_group.php"))) { $f_return = false; }
-		if ((!class_exists ("direct_right"))&&(!$direct_classes['basic_functions']->include_file ($direct_settings['path_system']."/classes/dhandler/swg_right.php"))) { $f_return = false; }
+		if ((!defined ("CLASS_direct_group"))&&(!$direct_classes['basic_functions']->include_file ($direct_settings['path_system']."/classes/dhandler/swg_group.php"))) { $f_return = false; }
+		if ((!defined ("CLASS_direct_right"))&&(!$direct_classes['basic_functions']->include_file ($direct_settings['path_system']."/classes/dhandler/swg_right.php"))) { $f_return = false; }
 
 		if ($f_return)
 		{
