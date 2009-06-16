@@ -423,10 +423,10 @@ Set up the group initialisation code
 			{
 				$f_right_id = md5 ($f_right);
 
-				if (isset ($f_group_rights_array[$f_right_id]))
+				if (isset ($f_user_rights_array[$f_right_id]))
 				{
-					if ($f_group_rights_array[$f_right_id]) { $f_return = true; }
-					elseif (($f_explicit)&&(!$f_group_rights_array[$f_right_id])) { $f_explicit_check = false; }
+					if ($f_user_rights_array[$f_right_id]) { $f_return = true; }
+					elseif (($f_explicit)&&(!$f_user_rights_array[$f_right_id])) { $f_explicit_check = false; }
 				}
 				elseif ($f_explicit) { $f_explicit_check = false; }
 			}
