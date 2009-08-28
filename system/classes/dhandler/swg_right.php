@@ -71,8 +71,7 @@ if (!defined ("direct_product_iversion")) { exit (); }
 Testing for required classes
 ------------------------------------------------------------------------- */
 
-$g_continue_check = true;
-if (defined ("CLASS_direct_right")) { $g_continue_check = false; }
+$g_continue_check = ((defined ("CLASS_direct_right")) ? false : true);
 if (!defined ("CLASS_direct_data_handler")) { $g_continue_check = false; }
 
 if ($g_continue_check)

@@ -211,14 +211,10 @@ Set up the group initialisation code
 		global $direct_classes;
 		if (USE_debug_reporting) { direct_debug (5,"sWG/#echo(__FILEPATH__)# -subkernel_group->group_right_check ($f_gid,+f_rights,+f_explicit)- (#echo(__LINE__)#)"); }
 
-		$f_return = false;
-
-		$f_group_rights_array = $direct_classes['kernel']->v_group_rights_get ($f_gid);
-
-		if (is_array ($f_rights)) { $f_rights_array = $f_rights; }
-		else { $f_rights_array = array ($f_rights); }
-
 		$f_explicit_check = true;
+		$f_group_rights_array = $direct_classes['kernel']->v_group_rights_get ($f_gid);
+		$f_return = false;
+		$f_rights_array = ((is_array ($f_rights)) ? $f_rights : array ($f_rights));
 
 		if (!empty ($f_rights_array))
 		{
@@ -370,10 +366,8 @@ Set up the group initialisation code
 			$f_user_groups_array = $direct_settings['user']['groups'];
 		}
 
-		if (is_array ($f_gid)) { $f_groups_array = $f_gid; }
-		else { $f_groups_array = array ($f_gid); }
-
 		$f_all_check = true;
+		$f_groups_array = ((is_array ($f_gid)) ? $f_gid : array ($f_gid));
 
 		if (!empty ($f_groups_array))
 		{
@@ -406,15 +400,10 @@ Set up the group initialisation code
 		global $direct_classes,$direct_settings;
 		if (USE_debug_reporting) { direct_debug (5,"sWG/#echo(__FILEPATH__)# -subkernel_group->group_user_check_right (+f_rights,+f_explicit)- (#echo(__LINE__)#)"); }
 
-		$f_return = false;
-
-		if (isset ($direct_settings['user']['rights'])) { $f_user_rights_array = $direct_settings['user']['rights']; }
-		else { $f_user_rights_array = $direct_classes['kernel']->v_group_user_get_rights (); }
-
-		if (is_array ($f_rights)) { $f_rights_array = $f_rights; }
-		else { $f_rights_array = array ($f_rights); }
-
 		$f_explicit_check = true;
+		$f_return = false;
+		$f_rights_array = ((is_array ($f_rights)) ? $f_rights : array ($f_rights));
+		$f_user_rights_array = ((isset ($direct_settings['user']['rights'])) ? $direct_settings['user']['rights'] : $direct_classes['kernel']->v_group_user_get_rights ());
 
 		if (!empty ($f_rights_array))
 		{
@@ -523,9 +512,7 @@ md5 ("srutype-".$direct_settings['user']['type']) => 1
 			if ((isset ($direct_settings['user']['id']))&&($direct_settings['user']['id'])) { $f_return[md5 ("sruid-".$direct_settings['user']['id'])] = 1; }
 			if ($direct_classes['kernel']->v_usertype_get_int ($direct_settings['user']['type']) > 1) { $f_return['11b4fcf292dd68a1e8b626412602ff10'] = 1; }
 			// md5 ("srutype-me")
-
-			if (isset ($direct_settings['user']['groups'])) { $f_groups_array = $direct_settings['user']['groups']; }
-			else { $f_groups_array = $direct_classes['kernel']->v_group_user_get_groups (); }
+			$f_groups_array = ((isset ($direct_settings['user']['groups'])) ? $direct_settings['user']['groups'] : $direct_classes['kernel']->v_group_user_get_groups ());
 
 			if (!empty ($f_groups_array))
 			{

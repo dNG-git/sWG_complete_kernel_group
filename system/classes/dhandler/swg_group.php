@@ -71,8 +71,7 @@ if (!defined ("direct_product_iversion")) { exit (); }
 Testing for required classes
 ------------------------------------------------------------------------- */
 
-$g_continue_check = true;
-if (defined ("CLASS_direct_group")) { $g_continue_check = false; }
+$g_continue_check = ((defined ("CLASS_direct_group")) ? false : true);
 if (!defined ("CLASS_direct_data_handler")) { $g_continue_check = false; }
 
 if ($g_continue_check)
@@ -372,17 +371,14 @@ Set up the cache
 			if (!$f_rid) { $f_rid = uniqid (""); }
 			$f_right_object = new direct_right ();
 
-			if ($f_right_object) { $f_right_array = $f_right_object->get_aid ($direct_settings['group_rights_table'].".ddbgrights_rid",$f_rid); }
-			else { $f_right_array = NULL; }
+			$f_right_array = ($f_right_object ? $f_right_object->get_aid ($direct_settings['group_rights_table'].".ddbgrights_rid",$f_rid) : NULL);
 
 			if ($f_right)
 			{
 				if ((!is_array ($f_right_array))||($f_overwrite))
 				{
 					$f_right_id = md5 ($f_right);
-
-					if ($f_setup) { $f_setup = 1; }
-					else { $f_setup = 0; }
+					$f_setup = ($f_setup ? 1 : 0);
 
 $g_right_array = array (
 "ddbgrights_id" => $f_rid,
